@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import checkAndInitialiseMonthsData from "../utils/dataPopulate";
+import HabitButton from "./HabitButton";
 
 const Tracker = ({ activeMonth }) => {
   const [days, setDays] = useState([]);
@@ -7,7 +8,7 @@ const Tracker = ({ activeMonth }) => {
     habit1: "",
     habit2: "",
     habit3: "",
-    habit4: "",
+    numericalHabit: "",
   });
 
   useEffect(() => {
@@ -27,18 +28,32 @@ const Tracker = ({ activeMonth }) => {
     retrieveMonthData();
   }, [activeMonth]);
 
-  const handleDayInputChange = (e, dayIndex, field) => {
-    const newDayData = [...days];
-    newDayData[dayIndex][field] = e.target.value;
-    setDays(newDayData);
-
-    updateLocalStorage();
-  };
-
   const handleTitleInputChange = (e, property) => {
     const newTitleData = { ...habitTitles };
     newTitleData[property] = e.target.value;
     setHabitTitles(newTitleData);
+  };
+
+  const handleHabitInputChange = (e, dayIndex, property) => {
+    const newDayData = [...days];
+    newDayData[dayIndex][property] = e.target.value;
+    setDays(newDayData);
+  };
+
+  const handleHabitToggleChange = (dayIndex, property) => {
+    const newDayData = [...days];
+    const habitState = newDayData[dayIndex][property];
+    let newHabitState;
+
+    if (habitState === "empty") {
+      newHabitState = "completed";
+    } else if (habitState === "completed") {
+      newHabitState = "failed";
+    } else {
+      newHabitState = "empty";
+    }
+    newDayData[dayIndex][property] = newHabitState;
+    setDays(newDayData);
   };
 
   const updateLocalStorage = () => {
@@ -51,13 +66,14 @@ const Tracker = ({ activeMonth }) => {
 
   return (
     <div className="p-5 mt-5 flex flex-col justify-center items-center">
-      <table className="table-fixed border-collapse border border-slate-400 bg-white">
+      <table className="table-auto border-collapse border border-slate-400 bg-white">
         <thead>
           <tr>
             <th className="border border-slate-300 p-2 text-center">Day</th>
             <th className="border border-slate-300 p-2">Daily Achievement</th>
             <th className="border border-slate-300 p-2 text-slate-700">
               <input
+                className="outline-none"
                 type="text"
                 value={habitTitles.habit1}
                 onChange={(e) => handleTitleInputChange(e, "habit1")}
@@ -65,6 +81,7 @@ const Tracker = ({ activeMonth }) => {
             </th>
             <th className="border border-slate-300 p-2 text-slate-700">
               <input
+                className="outline-none"
                 type="text"
                 value={habitTitles.habit2}
                 onChange={(e) => handleTitleInputChange(e, "habit2")}
@@ -72,6 +89,7 @@ const Tracker = ({ activeMonth }) => {
             </th>
             <th className="border border-slate-300 p-2 text-slate-700">
               <input
+                className="outline-none"
                 type="text"
                 value={habitTitles.habit3}
                 onChange={(e) => handleTitleInputChange(e, "habit3")}
@@ -79,9 +97,10 @@ const Tracker = ({ activeMonth }) => {
             </th>
             <th className="border border-slate-300 p-2 text-slate-700">
               <input
+                className="outline-none"
                 type="text"
-                value={habitTitles.habit4}
-                onChange={(e) => handleTitleInputChange(e, "habit4")}
+                value={habitTitles.numericalHabit}
+                onChange={(e) => handleTitleInputChange(e, "numericalHabit")}
               />
             </th>
           </tr>
@@ -89,43 +108,48 @@ const Tracker = ({ activeMonth }) => {
         <tbody>
           {days.map((day, index) => (
             <tr key={index}>
-              <td className="border border-slate-300 h-6">{index + 1}</td>
-              <td className="border border-slate-300 h-6">
+              <td className="border border-slate-300">{index + 1}</td>
+              <td className="border border-slate-300">
                 <input
+                  className="outline-none"
                   type="text"
                   value={day.achievement}
                   onChange={(e) =>
-                    handleDayInputChange(e, index, "achievement")
+                    handleHabitInputChange(e, index, "achievement")
                   }
                 />
               </td>
-              <td className="border border-slate-300 h-6">
-                <input
-                  type="text"
-                  value={day.habit1}
-                  onChange={(e) => handleDayInputChange(e, index, "habit1")}
+              <td className="border border-slate-300">
+                <HabitButton
+                  habitValue={day.habit1}
+                  handleHabitInputChange={() =>
+                    handleHabitToggleChange(index, "habit1")
+                  }
                 />
               </td>
-              <td className="border border-slate-300 h-6">
-                <input
-                  type="text"
-                  value={day.habit2}
-                  onChange={(e) => handleDayInputChange(e, index, "habit2")}
+              <td className="border border-slate-300">
+                <HabitButton
+                  habitValue={day.habit2}
+                  handleHabitInputChange={() =>
+                    handleHabitToggleChange(index, "habit2")
+                  }
                 />
               </td>
-              <td className="border border-slate-300 h-6">
-                <input
-                  type="text"
-                  value={day.habit3}
-                  onChange={(e) => handleDayInputChange(e, index, "habit3")}
+              <td className="border border-slate-300">
+                <HabitButton
+                  habitValue={day.habit3}
+                  handleHabitInputChange={() =>
+                    handleHabitToggleChange(index, "habit3")
+                  }
                 />
               </td>
-              <td className="border border-slate-300 h-6 w-2">
+              <td className="border border-slate-300">
                 <input
+                  className="outline-none"
                   type="text"
                   value={day.numericalHabit}
                   onChange={(e) =>
-                    handleDayInputChange(e, index, "numericalHabit")
+                    handleHabitInputChange(e, index, "numericalHabit")
                   }
                 />
               </td>

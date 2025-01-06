@@ -1,8 +1,8 @@
 const day = {
   achievement: "",
-  habit1: "",
-  habit2: "",
-  habit3: "",
+  habit1: "empty",
+  habit2: "empty",
+  habit3: "empty",
   numericalHabit: "",
 };
 
@@ -10,7 +10,7 @@ const titles = {
   habit1: "Enter Habit 1",
   habit2: "Enter Habit 2",
   habit3: "Enter Habit 3",
-  habit4: "Enter Habit 4",
+  numericalHabit: "Enter Habit 4",
 };
 
 const months = [
