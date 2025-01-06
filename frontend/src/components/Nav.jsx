@@ -1,24 +1,6 @@
-import { useState } from "react";
 import NavButton from "./NavButton";
 
-const Nav = () => {
-  const [activeMonth, setActiveMonth] = useState();
-
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
+const Nav = ({ activeMonth, setActiveMonth, months }) => {
   return (
     <nav className="flex gap-4 justify-center items-center pt-4">
       {months.map((month) => (
