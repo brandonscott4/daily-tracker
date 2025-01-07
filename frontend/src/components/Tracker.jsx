@@ -70,10 +70,12 @@ const Tracker = ({ activeMonth }) => {
         <thead>
           <tr>
             <th className="border border-slate-300 p-2 text-center">Day</th>
-            <th className="border border-slate-300 p-2">Daily Achievement</th>
+            <th className="border border-slate-300 p-2 w-1/3">
+              Daily Achievement
+            </th>
             <th className="border border-slate-300 p-2 text-slate-700">
               <input
-                className="outline-none"
+                className="outline-none w-full"
                 type="text"
                 value={habitTitles.habit1}
                 onChange={(e) => handleTitleInputChange(e, "habit1")}
@@ -81,7 +83,7 @@ const Tracker = ({ activeMonth }) => {
             </th>
             <th className="border border-slate-300 p-2 text-slate-700">
               <input
-                className="outline-none"
+                className="outline-none w-full"
                 type="text"
                 value={habitTitles.habit2}
                 onChange={(e) => handleTitleInputChange(e, "habit2")}
@@ -89,7 +91,7 @@ const Tracker = ({ activeMonth }) => {
             </th>
             <th className="border border-slate-300 p-2 text-slate-700">
               <input
-                className="outline-none"
+                className="outline-none w-full"
                 type="text"
                 value={habitTitles.habit3}
                 onChange={(e) => handleTitleInputChange(e, "habit3")}
@@ -97,7 +99,7 @@ const Tracker = ({ activeMonth }) => {
             </th>
             <th className="border border-slate-300 p-2 text-slate-700">
               <input
-                className="outline-none"
+                className="outline-none w-full"
                 type="text"
                 value={habitTitles.numericalHabit}
                 onChange={(e) => handleTitleInputChange(e, "numericalHabit")}
@@ -111,7 +113,7 @@ const Tracker = ({ activeMonth }) => {
               <td className="border border-slate-300">{index + 1}</td>
               <td className="border border-slate-300">
                 <input
-                  className="outline-none"
+                  className="outline-none w-full"
                   type="text"
                   value={day.achievement}
                   onChange={(e) =>
@@ -145,7 +147,7 @@ const Tracker = ({ activeMonth }) => {
               </td>
               <td className="border border-slate-300">
                 <input
-                  className="outline-none"
+                  className="outline-none w-full"
                   type="text"
                   value={day.numericalHabit}
                   onChange={(e) =>
