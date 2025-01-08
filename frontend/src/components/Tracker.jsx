@@ -65,40 +65,44 @@ const Tracker = ({ activeMonth }) => {
   };
 
   return (
-    <div className="p-5 mt-5 flex flex-col justify-center items-center">
-      <table className="table-auto border-collapse border border-slate-400 bg-white">
+    <div className="flex flex-col justify-center items-center w-full ml-60 px-20 py-12">
+      <table className="table-auto border-collapse border border-slate-400 bg-white w-full">
         <thead>
           <tr>
-            <th className="border border-slate-300 p-2 text-center">Day</th>
-            <th className="border border-slate-300 p-2 w-1/3">
-              Daily Achievement
+            <th className="border border-slate-300 p-2 text-center w-12">
+              Day
             </th>
-            <th className="border border-slate-300 p-2 text-slate-700">
+            <th className="border border-slate-300 p-2">Daily Achievement</th>
+            <th className="border border-slate-300 p-2 text-slate-700 w-12">
               <input
+                style={{ writingMode: "vertical-rl" }}
                 className="outline-none w-full"
                 type="text"
                 value={habitTitles.habit1}
                 onChange={(e) => handleTitleInputChange(e, "habit1")}
               />
             </th>
-            <th className="border border-slate-300 p-2 text-slate-700">
+            <th className="border border-slate-300 p-2 text-slate-700 w-12">
               <input
+                style={{ writingMode: "vertical-rl" }}
                 className="outline-none w-full"
                 type="text"
                 value={habitTitles.habit2}
                 onChange={(e) => handleTitleInputChange(e, "habit2")}
               />
             </th>
-            <th className="border border-slate-300 p-2 text-slate-700">
+            <th className="border border-slate-300 p-2 text-slate-700 w-12">
               <input
+                style={{ writingMode: "vertical-rl" }}
                 className="outline-none w-full"
                 type="text"
                 value={habitTitles.habit3}
                 onChange={(e) => handleTitleInputChange(e, "habit3")}
               />
             </th>
-            <th className="border border-slate-300 p-2 text-slate-700">
+            <th className="border border-slate-300 p-2 text-slate-700 w-20">
               <input
+                style={{ writingMode: "vertical-rl" }}
                 className="outline-none w-full"
                 type="text"
                 value={habitTitles.numericalHabit}
@@ -110,7 +114,9 @@ const Tracker = ({ activeMonth }) => {
         <tbody>
           {days.map((day, index) => (
             <tr key={index}>
-              <td className="border border-slate-300">{index + 1}</td>
+              <td className="border border-slate-300 text-center">
+                {index + 1}
+              </td>
               <td className="border border-slate-300">
                 <input
                   className="outline-none w-full"

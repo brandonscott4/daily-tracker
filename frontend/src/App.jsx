@@ -23,12 +23,14 @@ function App() {
   const [activeMonth, setActiveMonth] = useState(months[currMonth]);
   return (
     <div className="min-h-screen w-full bg-neutral-100">
-      <Nav
-        activeMonth={activeMonth}
-        setActiveMonth={setActiveMonth}
-        months={months}
-      />
-      <Tracker activeMonth={activeMonth} />
+      <div className="flex">
+        <Nav
+          activeMonth={activeMonth}
+          setActiveMonth={setActiveMonth}
+          months={months}
+        />
+        <Tracker activeMonth={activeMonth} />
+      </div>
     </div>
   );
 }
