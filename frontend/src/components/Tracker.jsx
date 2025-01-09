@@ -65,7 +65,7 @@ const Tracker = ({ activeMonth }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-full ml-60 px-32 pt-8 pb-12">
+    <div className="flex flex-col justify-center items-center w-full ml-60 px-32 pt-8 pb-8">
       <div className="w-full rounded-lg border border-slate-300 overflow-hidden">
         <table className="table-auto bg-white w-full">
           <thead>
