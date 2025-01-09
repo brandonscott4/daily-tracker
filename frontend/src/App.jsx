@@ -21,6 +21,23 @@ function App() {
 
   const currMonth = new Date().getMonth();
   const [activeMonth, setActiveMonth] = useState(months[currMonth]);
+
+  const [days, setDays] = useState([]);
+  const [habitTitles, setHabitTitles] = useState({
+    habit1: "",
+    habit2: "",
+    habit3: "",
+    numericalHabit: "",
+  });
+
+  const updateLocalStorage = () => {
+    const monthData = {
+      habitTitles: habitTitles,
+      days: days,
+    };
+    localStorage.setItem(activeMonth, JSON.stringify(monthData));
+  };
+
   return (
     <div className="min-h-screen w-full bg-neutral-100">
       <div className="flex">
@@ -28,8 +45,15 @@ function App() {
           activeMonth={activeMonth}
           setActiveMonth={setActiveMonth}
           months={months}
+          updateLocalStorage={updateLocalStorage}
         />
-        <Tracker activeMonth={activeMonth} />
+        <Tracker
+          activeMonth={activeMonth}
+          days={days}
+          setDays={setDays}
+          habitTitles={habitTitles}
+          setHabitTitles={setHabitTitles}
+        />
       </div>
     </div>
   );

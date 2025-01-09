@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import checkAndInitialiseMonthsData from "../utils/dataPopulate";
 import HabitButton from "./HabitButton";
 
-const Tracker = ({ activeMonth }) => {
-  const [days, setDays] = useState([]);
-  const [habitTitles, setHabitTitles] = useState({
-    habit1: "",
-    habit2: "",
-    habit3: "",
-    numericalHabit: "",
-  });
-
+const Tracker = ({
+  activeMonth,
+  days,
+  setDays,
+  habitTitles,
+  setHabitTitles,
+}) => {
   useEffect(() => {
     checkAndInitialiseMonthsData();
   }, []);
@@ -26,7 +24,7 @@ const Tracker = ({ activeMonth }) => {
     };
 
     retrieveMonthData();
-  }, [activeMonth]);
+  }, [activeMonth, setDays, setHabitTitles]);
 
   const handleTitleInputChange = (e, property) => {
     const newTitleData = { ...habitTitles };
@@ -54,14 +52,6 @@ const Tracker = ({ activeMonth }) => {
     }
     newDayData[dayIndex][property] = newHabitState;
     setDays(newDayData);
-  };
-
-  const updateLocalStorage = () => {
-    const monthData = {
-      habitTitles: habitTitles,
-      days: days,
-    };
-    localStorage.setItem(activeMonth, JSON.stringify(monthData));
   };
 
   return (
@@ -122,7 +112,7 @@ const Tracker = ({ activeMonth }) => {
                 </td>
                 <td className="border-x border-t border-slate-300">
                   <input
-                    className="outline-none w-full"
+                    className="outline-none w-full px-2"
                     type="text"
                     value={day.achievement}
                     onChange={(e) =>
@@ -156,7 +146,7 @@ const Tracker = ({ activeMonth }) => {
                 </td>
                 <td className="border-l border-t border-slate-300">
                   <input
-                    className="outline-none w-full"
+                    className="outline-none w-full px-1 text-center"
                     type="text"
                     value={day.numericalHabit}
                     onChange={(e) =>
@@ -169,13 +159,6 @@ const Tracker = ({ activeMonth }) => {
           </tbody>
         </table>
       </div>
-
-      <button
-        className="bg-white w-40 py-1 mt-4 rounded border-2 border-slate-300"
-        onClick={() => updateLocalStorage()}
-      >
-        Save
-      </button>
     </div>
   );
 };
