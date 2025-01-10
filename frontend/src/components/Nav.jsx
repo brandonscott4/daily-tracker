@@ -18,7 +18,7 @@ const Nav = ({ activeMonth, setActiveMonth, months, updateLocalStorage }) => {
         ))}
       </div>
       <button
-        className="bg-white w-44 py-1 rounded border-2 border-green-200 mt-auto mx-auto mb-6"
+        className="bg-white w-44 py-1 rounded border-2 border-green-200 mt-auto mx-auto mb-6 hover:shadow"
         onClick={() => updateLocalStorage()}
       >
         Save
